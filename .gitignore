@@ -1,2 +1,4 @@
-flask_app/*db
+flask_app/data.db
+flask_app/data.db-journal
+__pycache*
 .venv/
