@@ -1,4 +1,4 @@
-# QSee quality control monitor - v1.0a - GEORGE DOYLE
+# QSee quality control monitor - v1.0a
 
 import numpy as np
 import pandas as pd
