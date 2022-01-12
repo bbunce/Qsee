@@ -1,4 +1,5 @@
 # QSee quality control monitor - v1.0a
+# App is dependent on local CSV files - have to code an exception to generate new CSV files on first run locally.
 
 import numpy as np
 import pandas as pd
