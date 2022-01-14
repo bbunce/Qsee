@@ -1,5 +1,7 @@
 # QSee quality control monitor - v1.0a
 # App is dependent on local CSV files - have to code an exception to generate new CSV files on first run locally.
+# Must add libraries to requirements.txt
+# main.py merge with flask_app/main.py required
 
 import numpy as np
 import pandas as pd
@@ -103,6 +105,13 @@ def stdev(data):
 
 def main_menu():  # Welcome menu
     print('\n' + Style.BRIGHT + Back.LIGHTBLACK_EX + Fore.GREEN + "QSee Quality Control monitor v1.0a." + '\n')
+    # Check if assay.csv exists - if not, create
+    if os.path.isfile('assays.csv') is False:
+        print(Style.DIM + Back.LIGHTBLACK_EX + Fore.RED + "Assay file not found. A new file has been created")
+        with open('assay.csv', 'w') as csvfile:
+            filewriter = csv.writer(csvfile, delimiter=',',
+                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            filewriter.writerow(['ASSAY', 'ANALYSER', 'CONTROL', 'LOT'])
     print("Please select one of the following options:" + '\n')
     print("1. Load existing assay.")
     print("2. Create a new assay." + '\n')
