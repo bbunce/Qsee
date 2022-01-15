@@ -22,6 +22,7 @@ onesd = 0  # Measure of a single standard deviation in the assay
 cov = 0  # Co-efficient of variance calculation
 qcval = 0  # QC value entry
 average = 0  # Mean value
+values = []  # List containing all previous results
 
 
 # Class for generating a moving range chart
@@ -178,7 +179,9 @@ def new_assay():
 def result_menu():
     print('\n' + Style.BRIGHT + Back.LIGHTBLACK_EX + Fore.GREEN + aload + " QC menu" + '\n')
     current = pd.read_csv(aload + '.csv')
+    global values
     values = current['RESULT'].tolist()
+    values = [float(i) for i in values]  # Converts all values in list to floats
     values2 = np.array(values)
     dates = current['DATE'].tolist()
     dates2 = np.array(dates)
@@ -262,6 +265,12 @@ def westgard_check():
         print('\n' + Style.DIM + Back.LIGHTBLACK_EX + Fore.RED + "WARNING! QC value exceeds the lower control limit.")
         print('Current lower control limit: ' + str(round(average-onesd*3, 2)) + '. Your result: ' + str(qcval))
         print('Results produced within this run should be rejected.')
+    if values[-1] > average+onesd*2 and qcval < average-onesd*2:
+        print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 12S violation has occurred.")
+        print('Previous QC value (' + str(values[-1]) + ') was 2 standard deviations above the mean.')
+        print('The QC value you entered (' + str(qcval) + ') is 2 standard deviations below the mean.')
+        print('Please check your laboratory policy before proceeding to enter this result into the database.')
+        g = input('Confirm result? (y/n): ')
 
 
 # Script workflow - initiate the code
