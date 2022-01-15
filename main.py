@@ -1,7 +1,7 @@
 # QSee quality control monitor - v1.0a
 # App is dependent on local CSV files - have to code an exception to generate new CSV files on first run locally.
 # Must add libraries to requirements.txt
-# main.py merge with flask_app/main.py required
+# main.py merge with flask_app/main.py required. Colouring fixes required for terminal view.
 
 import numpy as np
 import pandas as pd
@@ -20,6 +20,7 @@ init(autoreset=True)
 aload = ''  # Stores the name of the assay CSV file
 onesd = 0  # Measure of a single standard deviation in the assay
 cov = 0  # Co-efficient of variance calculation
+qcval = 0  # QC value entry
 
 
 # Class for generating a moving range chart
@@ -211,9 +212,33 @@ def result_menu():
     print('2. Modify existing data')
     opt = input('\n' + 'Select an option: ')
     if opt == '1':
-        print("load qc add")
+        add_qc()
     if opt == '2':
         print("modify")
+
+
+def add_qc():
+    # read csv, and split on "," the line
+    csv_file = csv.reader(open('assays.csv', "r"), delimiter=",")
+
+    # loop through the csv list
+    for row in csv_file:
+        # if current rows 2nd value is equal to input, print that row
+        if aload == row[0]:
+            print('\n' + 'Current control for this assay is: ' + row[2])
+            print('Current lot number for this assay is: ' + row[3])
+            dec = input('If these details are correct? (y/n): ')
+            if dec == 'y' or dec == 'Y':
+                global qcval
+                qcval = input('Enter the QC value recorded: ')
+                westgard_check()
+            else:
+                main_menu()
+
+
+def westgard_check():
+    # code rule check here
+    print('Checking...')
 
 
 # Script workflow - initiate the code
