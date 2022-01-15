@@ -1,7 +1,6 @@
 # QSee quality control monitor - v1.0a
 # App is dependent on local CSV files - have to code an exception to generate new CSV files on first run locally.
-# Must add libraries to requirements.txt
-# main.py merge with flask_app/main.py required. Colouring fixes required for terminal view.
+# main.py merge with flask_app/main.py required.
 
 import numpy as np
 import pandas as pd
@@ -71,6 +70,7 @@ class MR_ControlChart:
         plt.figtext(0.5, 0.01, "CV: " + str(round(cov, 2)) + "%. Total QC entries: " + str(len(self.X)), fontsize=10,
                     ha="center", bbox={"facecolor": "grey", "alpha": 0.5, "pad": 5})
         plt.show()
+
         # Plot an mR chart
         plt.figure(figsize=(15, 5))
         plt.plot(self.mR, marker="o", color="k", label="mR ")
@@ -81,6 +81,7 @@ class MR_ControlChart:
         plt.xticks(np.arange(len(self.X)))
         plt.legend(loc='upper left')
         # plt.show() - DISABLED FOR NOW, COMPLETE
+
         # Plot a boxplot
         plt.figure(figsize=(15, 5))
         plt.subplot(1, 2, 1)
@@ -116,11 +117,11 @@ def stdev(data):
 
 
 def main_menu():  # Welcome menu
-    print('\n' + Style.BRIGHT + Back.LIGHTBLACK_EX + Fore.GREEN + "QSee Quality Control monitor v1.0a." + '\n')
+    print('\n' + Style.BRIGHT + Back.BLACK + Fore.GREEN + "QSee Quality Control monitor v1.0a." + '\n')
     # Check if assay.csv exists - if not, create
     if os.path.isfile('assays.csv') is False:
-        print(Style.DIM + Back.LIGHTBLACK_EX + Fore.RED + "Assay file not found. A new file has been created")
-        with open('assay.csv', 'w') as csvfile:
+        print(Style.DIM + Back.BLACK + Fore.RED + "Assay file not found. A new file has been created")
+        with open('assays.csv', 'w') as csvfile:
             filewriter = csv.writer(csvfile, delimiter=',',
                                     quotechar='|', quoting=csv.QUOTE_MINIMAL)
             filewriter.writerow(['ASSAY', 'ANALYSER', 'CONTROL', 'LOT'])
@@ -133,18 +134,18 @@ def main_menu():  # Welcome menu
     if men == "2":
         new_assay()  # Load the create menu
     if men.isnumeric() is False or int(men) != 1 and int(men) != 2:
-        input(Style.DIM + Back.LIGHTBLACK_EX + Fore.RED + "Invalid choice. Press enter to return to the main menu")
+        input(Style.DIM + Back.BLACK + Fore.RED + "Invalid choice. Press enter to return to the main menu")
         main_menu()
 
 
 def assay_menu():
     assays = pd.read_csv(r'assays.csv')
     if len(assays) < 1:  # Check if assay list CSV has any entries.
-        print('\n' + Style.DIM + Back.LIGHTBLACK_EX + Fore.RED + "Assay list is empty. Please add an assay before use.")
+        print('\n' + Style.DIM + Back.BLACK + Fore.RED + "Assay list is empty. Please add an assay before use.")
         input('\n' + "Press Enter to return to the main menu.")
         main_menu()
     else:
-        print('\n' + Style.BRIGHT + Back.LIGHTBLACK_EX + Fore.BLUE + "CURRENT ASSAYS" + '\n')
+        print('\n' + Style.BRIGHT + Back.BLACK + Fore.BLUE + "CURRENT ASSAYS" + '\n')
         alist = assays['ASSAY'].tolist()
         print(*alist, sep='\n')  # Formats the list generated into individual lines
         global aload
@@ -152,7 +153,7 @@ def assay_menu():
         if os.path.isfile(aload + '.csv') is True:
             result_menu()
         if os.path.isfile(aload + '.csv') is False:
-            print(Style.DIM + Back.LIGHTBLACK_EX + Fore.RED + "Assay not found. Please ensure spelling is correct.")
+            print(Style.DIM + Back.BLACK + Fore.RED + "Assay not found. Please ensure spelling is correct.")
             assay_menu()
 
 
@@ -171,13 +172,13 @@ def new_assay():
                                 quotechar='|', quoting=csv.QUOTE_MINIMAL)
         filewriter.writerow(['RESULT', 'DATE'])
     # Print to inform user in terminal
-    print('\n' + Style.BRIGHT + Back.LIGHTGREEN_EX + Fore.WHITE + "Assay created successfully!")
+    print('\n' + Style.BRIGHT + Back.GREEN + Fore.WHITE + "Assay created successfully!")
     input('\n' + "Press enter to return to the main menu")
     main_menu()
 
 
 def result_menu():
-    print('\n' + Style.BRIGHT + Back.LIGHTBLACK_EX + Fore.GREEN + aload + " QC menu" + '\n')
+    print('\n' + Style.BRIGHT + Back.BLACK + Fore.GREEN + aload + " QC menu" + '\n')
     current = pd.read_csv(aload + '.csv')
     global values
     values = current['RESULT'].tolist()
@@ -213,15 +214,15 @@ def result_menu():
         print("CV: " + str(cov) + "%")
         # Check COV standard
         if cov < 5:
-            print('\n' + Style.BRIGHT + Back.LIGHTGREEN_EX + Fore.WHITE + "Assay performance is excellent.")
+            print('\n' + Style.BRIGHT + Back.GREEN + Fore.WHITE + "Assay performance is excellent.")
         if 5 < cov < 10:
-            print('\n' + Style.BRIGHT + Back.YELLOW + Fore.WHITE + "Assay performance is acceptable")
+            print('\n' + Style.BRIGHT + Back.YELLOW + Fore.BLACK + "Assay performance is acceptable")
         if cov > 10:
-            print('\n' + Style.BRIGHT + Back.RED + Fore.WHITE + "Co-efficient of variance measurement in this assay is high. ")
+            print('\n' + Style.BRIGHT + Back.RED + Fore.BLACK + "Co-efficient of variance measurement in this assay is high. ")
     else:
         print("There are not enough QC entries to formulate an accurate Westgard plot. Currently: " + str(len(values)))
         print("You require at least 10 to begin.")
-    print('\n' + Style.DIM + Back.LIGHTBLACK_EX + Fore.RED + aload + " assay menu")
+    print('\n' + Style.DIM + Back.BLACK + Fore.RED + aload + " assay menu")
     print('\n' + '1. Add new QC data')
     print('2. Modify existing data')
     opt = input('\n' + 'Select an option: ')
@@ -237,7 +238,6 @@ def add_qc():
 
     # loop through the csv list
     for row in csv_file:
-        # if current rows 2nd value is equal to input, print that row
         if aload == row[0]:
             print('\n' + 'Current control for this assay is: ' + row[2])
             print('Current lot number for this assay is: ' + row[3])
@@ -258,17 +258,24 @@ def add_qc():
 def westgard_check():
     # 13S UCL VIOLATION
     if qcval > average+onesd*3:
-        print('\n' + Style.DIM + Back.LIGHTBLACK_EX + Fore.RED + "WARNING! QC value exceeds the upper control limit.")
+        print('\n' + Style.DIM + Back.BLACK + Fore.RED + "WARNING! QC value exceeds the upper control limit.")
         print('Current upper control limit: ' + str(round(average+onesd*3, 2)) + '. Your result: ' + str(qcval))
         print('Results produced within this run should be rejected.')
     if qcval < average-onesd*3:
         print('\n' + Style.DIM + Back.LIGHTBLACK_EX + Fore.RED + "WARNING! QC value exceeds the lower control limit.")
         print('Current lower control limit: ' + str(round(average-onesd*3, 2)) + '. Your result: ' + str(qcval))
         print('Results produced within this run should be rejected.')
+    # 12S UCL VIOLATION
     if values[-1] > average+onesd*2 and qcval < average-onesd*2:
         print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 12S violation has occurred.")
         print('Previous QC value (' + str(values[-1]) + ') was 2 standard deviations above the mean.')
         print('The QC value you entered (' + str(qcval) + ') is 2 standard deviations below the mean.')
+        print('Please check your laboratory policy before proceeding to enter this result into the database.')
+        g = input('Confirm result? (y/n): ')
+    if values[-1] < average-onesd*2 and qcval > average+onesd*2:
+        print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 12S violation has occurred.")
+        print('Previous QC value (' + str(values[-1]) + ') was 2 standard deviations below the mean.')
+        print('The QC value you entered (' + str(qcval) + ') is 2 standard deviations above the mean.')
         print('Please check your laboratory policy before proceeding to enter this result into the database.')
         g = input('Confirm result? (y/n): ')
 
