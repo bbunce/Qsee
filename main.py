@@ -21,6 +21,7 @@ aload = ''  # Stores the name of the assay CSV file
 onesd = 0  # Measure of a single standard deviation in the assay
 cov = 0  # Co-efficient of variance calculation
 qcval = 0  # QC value entry
+average = 0  # Mean value
 
 
 # Class for generating a moving range chart
@@ -90,6 +91,15 @@ class MR_ControlChart:
         plt.title("QC - Boxplot mR")
         plt.xlabel("mR ")
         # plt.show() - DISABLED FOR NOW, COMPLETE
+
+
+# Function to check whether string is in float format
+def is_float(n: str) -> bool:
+    try:
+        float(n)
+        return True
+    except ValueError:
+        return False
 
 
 def variance(data, ddof=0):
@@ -178,6 +188,7 @@ def result_menu():
     onesd = stdev(values)
     for i in values:
         total += i
+    global average
     average = total/len(values)
     global cov
     cov = (onesd / average) * 100
@@ -227,18 +238,30 @@ def add_qc():
         if aload == row[0]:
             print('\n' + 'Current control for this assay is: ' + row[2])
             print('Current lot number for this assay is: ' + row[3])
-            dec = input('If these details are correct? (y/n): ')
+            dec = input('\n' + 'If these details are correct? (y/n): ')
             if dec == 'y' or dec == 'Y':
-                global qcval
-                qcval = input('Enter the QC value recorded: ')
-                westgard_check()
+                qc = input('\n' + 'Enter the QC value recorded: ')
+                if qc.isnumeric() is False and is_float(qc) is False:
+                    print("Please enter numeric figures only.")
+                    add_qc()
+                else:
+                    global qcval
+                    qcval = float(qc)
+                    westgard_check()
             else:
                 main_menu()
 
 
 def westgard_check():
-    # code rule check here
-    print('Checking...')
+    # 13S UCL VIOLATION
+    if qcval > average+onesd*3:
+        print('\n' + Style.DIM + Back.LIGHTBLACK_EX + Fore.RED + "WARNING! QC value exceeds the upper control limit.")
+        print('Current upper control limit: ' + str(round(average+onesd*3, 2)) + '. Your result: ' + str(qcval))
+        print('Results produced within this run should be rejected.')
+    if qcval < average-onesd*3:
+        print('\n' + Style.DIM + Back.LIGHTBLACK_EX + Fore.RED + "WARNING! QC value exceeds the lower control limit.")
+        print('Current lower control limit: ' + str(round(average-onesd*3, 2)) + '. Your result: ' + str(qcval))
+        print('Results produced within this run should be rejected.')
 
 
 # Script workflow - initiate the code
