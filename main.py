@@ -1,6 +1,7 @@
 # QSee quality control monitor - v1.0a
 # App is dependent on local CSV files - have to code an exception to generate new CSV files on first run locally.
 # main.py merge with flask_app/main.py required.
+import datetime
 
 import numpy as np
 import pandas as pd
@@ -9,6 +10,7 @@ import os.path
 import csv
 import math
 from colorama import init, Fore, Back, Style
+from datetime import datetime
 
 plt.style.use('seaborn-colorblind')
 
@@ -170,7 +172,7 @@ def new_assay():
     with open(assayname + '.csv', 'w') as csvfile:
         filewriter = csv.writer(csvfile, delimiter=',',
                                 quotechar='|', quoting=csv.QUOTE_MINIMAL)
-        filewriter.writerow(['RESULT', 'DATE'])
+        filewriter.writerow(['RESULT', 'DATE', 'CONTROL', 'ANALYSER', 'LOT', 'OPERATOR', 'NOTE'])
     # Print to inform user in terminal
     print('\n' + Style.BRIGHT + Back.GREEN + Fore.WHITE + "Assay created successfully!")
     input('\n' + "Press enter to return to the main menu")
@@ -179,7 +181,7 @@ def new_assay():
 
 def result_menu():
     print('\n' + Style.BRIGHT + Back.BLACK + Fore.GREEN + aload + " QC menu" + '\n')
-    current = pd.read_csv(aload + '.csv')
+    current = pd.read_csv(aload + '.csv', on_bad_lines='skip')
     global values
     values = current['RESULT'].tolist()
     values = [float(i) for i in values]  # Converts all values in list to floats
@@ -256,6 +258,7 @@ def add_qc():
 
 
 def westgard_check():
+    g = 'a'  # variable to decide whether run is accepted or reject
     # 13S UCL VIOLATION
     if qcval > average+onesd*3:
         print('\n' + Style.DIM + Back.BLACK + Fore.RED + "WARNING! QC value exceeds the upper control limit.")
@@ -271,13 +274,20 @@ def westgard_check():
         print('Previous QC value (' + str(values[-1]) + ') was 2 standard deviations above the mean.')
         print('The QC value you entered (' + str(qcval) + ') is 2 standard deviations below the mean.')
         print('Please check your laboratory policy before proceeding to enter this result into the database.')
-        g = input('Confirm result? (y/n): ')
+        g = input('\n' + 'Confirm result? (y/n): ')
     if values[-1] < average-onesd*2 and qcval > average+onesd*2:
         print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 12S violation has occurred.")
         print('Previous QC value (' + str(values[-1]) + ') was 2 standard deviations below the mean.')
         print('The QC value you entered (' + str(qcval) + ') is 2 standard deviations above the mean.')
         print('Please check your laboratory policy before proceeding to enter this result into the database.')
-        g = input('Confirm result? (y/n): ')
+        g = input('\n' + 'Confirm result? (y/n): ')
+    # Add result to database
+    if g == 'y' or g == 'Y' or g == 'a':
+        with open(aload + '.csv', 'a') as csvfile:
+            filewriter = csv.writer(csvfile, delimiter=',',
+                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            filewriter.writerow([qcval, datetime.utcnow().today().strftime('%d/%m/%Y'), 'CONTROL', 'ANALYSER', 'LOT', 'OPERATOR', 'NOTE'])
+            print('\n' + Style.BRIGHT + Fore.GREEN + 'Result added to database')
 
 
 # Script workflow - initiate the code
