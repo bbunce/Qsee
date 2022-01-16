@@ -264,10 +264,12 @@ def westgard_check():
         print('\n' + Style.DIM + Back.BLACK + Fore.RED + "WARNING! QC value exceeds the upper control limit.")
         print('Current upper control limit: ' + str(round(average+onesd*3, 2)) + '. Your result: ' + str(qcval))
         print('Results produced within this run should be rejected.')
+        g = 'r'  # Rejected run - don't add to database
     if qcval < average-onesd*3:
         print('\n' + Style.DIM + Back.LIGHTBLACK_EX + Fore.RED + "WARNING! QC value exceeds the lower control limit.")
         print('Current lower control limit: ' + str(round(average-onesd*3, 2)) + '. Your result: ' + str(qcval))
         print('Results produced within this run should be rejected.')
+        g = 'r'  # Rejected run - don't add to database
     # 12S UCL VIOLATION
     if values[-1] > average+onesd*2 and qcval < average-onesd*2:
         print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 12S violation has occurred.")
