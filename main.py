@@ -1,5 +1,6 @@
 # QSee quality control monitor - v1.0a
-# App is dependent on local CSV files - have to code an exception to generate new CSV files on first run locally.
+# App is dependent on local CSV files - code should be adapted to utilise API/db storage
+# Switch from global variable use to exchanging data through function arguments?
 # main.py merge with flask_app/main.py required.
 import datetime
 
@@ -189,17 +190,20 @@ def result_menu():
     dates = current['DATE'].tolist()
     dates2 = np.array(dates)
     total = 0
-    # Takes all QC values in list to generate a global COV and SD figure
-    global onesd
-    onesd = stdev(values)
-    for i in values:
-        total += i
-    global average
-    average = total/len(values)
-    global cov
-    cov = (onesd / average) * 100
     # Require at least 10 QC entries before any kind of analysis can be made.
-    if len(values) > 9:
+    if len(values) < 10:
+        print("There are not enough QC entries to formulate an accurate Westgard plot. Currently: " + str(len(values)))
+        print("You require at least 10 to begin.")
+    else:
+        # Takes all QC values in list to generate a global COV and SD figure
+        global onesd
+        onesd = stdev(values)
+        for i in values:
+            total += i
+        global average
+        average = total / len(values)
+        global cov
+        cov = (onesd / average) * 100
         # Send array of control values to QC chart
         chart = MR_ControlChart()
         chart.fit(values2, dates2)
@@ -208,11 +212,11 @@ def result_menu():
         print("NUMBER OF ENTRIES: " + str(len(values)))
         print("MEAN: " + str(average))
         print("SD+1: " + str(average + onesd))
-        print("SD+2: " + str(average + onesd*2))
-        print("SD+3: " + str(average + onesd*3))
+        print("SD+2: " + str(average + onesd * 2))
+        print("SD+3: " + str(average + onesd * 3))
         print("SD-1: " + str(average - onesd))
-        print("SD-2: " + str(average - onesd*2))
-        print("SD-3: " + str(average - onesd*3))
+        print("SD-2: " + str(average - onesd * 2))
+        print("SD-3: " + str(average - onesd * 3))
         print("CV: " + str(cov) + "%")
         # Check COV standard
         if cov < 5:
@@ -220,10 +224,8 @@ def result_menu():
         if 5 < cov < 10:
             print('\n' + Style.BRIGHT + Back.YELLOW + Fore.BLACK + "Assay performance is acceptable")
         if cov > 10:
-            print('\n' + Style.BRIGHT + Back.RED + Fore.BLACK + "Co-efficient of variance measurement in this assay is high. ")
-    else:
-        print("There are not enough QC entries to formulate an accurate Westgard plot. Currently: " + str(len(values)))
-        print("You require at least 10 to begin.")
+            print(
+                '\n' + Style.BRIGHT + Back.RED + Fore.BLACK + "Co-efficient of variance measurement in this assay is high. ")
     print('\n' + Style.DIM + Back.BLACK + Fore.RED + aload + " assay menu")
     print('\n' + '1. Add new QC data')
     print('2. Modify existing data')
@@ -252,71 +254,99 @@ def add_qc():
                 else:
                     global qcval
                     qcval = float(qc)
-                    westgard_check()
+                    if len(values) > 9:
+                        westgard_check()
+                    else:
+                        add_db()
             else:
                 main_menu()
 
 
 def westgard_check():
-    g = 'a'  # variable to decide whether run is accepted or reject
     # 13S UCL/LCL VIOLATION
     if qcval > average+onesd*3:
         print('\n' + Style.DIM + Back.BLACK + Fore.RED + "WARNING! QC value exceeds the upper control limit.")
         print('Current upper control limit: ' + str(round(average+onesd*3, 2)) + '. Your result: ' + str(qcval))
         print('Results produced within this run should be rejected.')
-        g = 'n'  # Rejected run - don't add to database
+        return
     if qcval < average-onesd*3:
         print('\n' + Style.DIM + Back.LIGHTBLACK_EX + Fore.RED + "WARNING! QC value exceeds the lower control limit.")
         print('Current lower control limit: ' + str(round(average-onesd*3, 2)) + '. Your result: ' + str(qcval))
         print('Results produced within this run should be rejected.')
-        g = 'n'  # Rejected run - don't add to database
+        return
     # R4S VIOLATION
-    if values[-1] > average+onesd*2 and qcval < average-onesd*2 and g != 'n':
+    if values[-1] > average+onesd*2 and qcval < average-onesd*2:
         print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! R4S violation has occurred.")
         print('Previous QC value (' + str(values[-1]) + ') was 2 standard deviations above the mean.')
         print('The QC value you entered (' + str(qcval) + ') is 2 standard deviations below the mean.')
         print('This rule should only be interpreted within-run, not between-run.')
         g = input('\n' + 'Confirm result? (y/n): ')
-    if values[-1] < average-onesd*2 and qcval > average+onesd*2 and g != 'n':
+        if g == 'y' or g == 'Y':
+            add_db()
+        else:
+            return
+    if values[-1] < average-onesd*2 and qcval > average+onesd*2:
         print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! R4S violation has occurred.")
         print('Previous QC value (' + str(values[-1]) + ') was 2 standard deviations below the mean.')
         print('The QC value you entered (' + str(qcval) + ') is 2 standard deviations above the mean.')
         print('This rule should only be interpreted within-run, not between-run.')
         g = input('\n' + 'Confirm result? (y/n): ')
+        if g == 'y' or g == 'Y':
+            add_db()
+        else:
+            return
     # 22S VIOLATION
-    if values[-1] > average+onesd*2 and qcval > average-onesd*2 and g != 'n':
+    if values[-1] > average+onesd*2 and qcval > average+onesd*2:
         print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 22S violation has occurred.")
         print('Previous QC value (' + str(values[-1]) + ') was 2 standard deviations above the mean.')
         print('The QC value you entered (' + str(qcval) + ') is 2 standard deviations above the mean.')
         print('Please check your laboratory policy before proceeding to enter this result into the database.')
         g = input('\n' + 'Confirm result? (y/n): ')
-    if values[-1] < average-onesd*2 and qcval < average+onesd*2 and g != 'n':
+        if g == 'y' or g == 'Y':
+            add_db()
+        else:
+            return
+    if values[-1] < average-onesd*2 and qcval < average-onesd*2:
         print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 22S violation has occurred.")
         print('Previous QC value (' + str(values[-1]) + ') was 2 standard deviations below the mean.')
         print('The QC value you entered (' + str(qcval) + ') is 2 standard deviations below the mean.')
         print('Please check your laboratory policy before proceeding to enter this result into the database.')
         g = input('\n' + 'Confirm result? (y/n): ')
+        if g == 'y' or g == 'Y':
+            add_db()
+        else:
+            return
     # 41S VIOLATION
-    if values[-3] > average+onesd and values[-2] > average+onesd and values[-1] > average+onesd and qcval > average+onesd and g != 'n':
+    if values[-3] > average+onesd and values[-2] > average+onesd and values[-1] > average+onesd and qcval > average+onesd:
         print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 41S violation has occurred.")
         print('The last 4 QC values all fall at least 1 standard deviation above the mean.')
         print('The QC value you entered:' + str(qcval))
         print('Please check your laboratory policy before proceeding to enter this result into the database.')
         g = input('\n' + 'Confirm result? (y/n): ')
-    if values[-3] < average+onesd and values[-2] < average+onesd and values[-1] < average+onesd and qcval < average+onesd and g != 'n':
+        if g == 'y' or g == 'Y':
+            add_db()
+        else:
+            return
+    if values[-3] < average-onesd and values[-2] < average-onesd and values[-1] < average-onesd and qcval < average-onesd:
         print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 41S violation has occurred.")
         print('The last 4 QC values all fall at least 1 standard deviation below the mean.')
         print('The QC value you entered:' + str(qcval))
         print('Please check your laboratory policy before proceeding to enter this result into the database.')
         g = input('\n' + 'Confirm result? (y/n): ')
+        if g == 'y' or g == 'Y':
+            add_db()
+        else:
+            return
+    add_db()
 
+
+def add_db():
     # Add result to database
-    if g == 'y' or g == 'Y' or g == 'a':
-        with open(aload + '.csv', 'a') as csvfile:
-            filewriter = csv.writer(csvfile, delimiter=',',
-                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
-            filewriter.writerow([qcval, datetime.utcnow().today().strftime('%d/%m/%Y'), 'CONTROL', 'ANALYSER', 'LOT', 'OPERATOR', 'NOTE'])
-            print('\n' + Style.BRIGHT + Fore.GREEN + 'Result added to database')
+    with open(aload + '.csv', 'a') as csvfile:
+        # csvfile.write("\n")  # write new line
+        filewriter = csv.writer(csvfile, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        filewriter.writerow([qcval, datetime.utcnow().today().strftime('%d/%m/%Y'), 'CONTROL', 'ANALYSER', 'LOT', 'OPERATOR', 'NOTE'])
+        print('\n' + Style.BRIGHT + Fore.GREEN + 'Result added to database')
 
 
 # Script workflow - initiate the code
