@@ -271,39 +271,39 @@ def westgard_check():
         print('Results produced within this run should be rejected.')
         g = 'n'  # Rejected run - don't add to database
     # R4S VIOLATION
-    if values[-1] > average+onesd*2 and qcval < average-onesd*2:
+    if values[-1] > average+onesd*2 and qcval < average-onesd*2 and g != 'n':
         print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! R4S violation has occurred.")
         print('Previous QC value (' + str(values[-1]) + ') was 2 standard deviations above the mean.')
         print('The QC value you entered (' + str(qcval) + ') is 2 standard deviations below the mean.')
         print('This rule should only be interpreted within-run, not between-run.')
         g = input('\n' + 'Confirm result? (y/n): ')
-    if values[-1] < average-onesd*2 and qcval > average+onesd*2:
+    if values[-1] < average-onesd*2 and qcval > average+onesd*2 and g != 'n':
         print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! R4S violation has occurred.")
         print('Previous QC value (' + str(values[-1]) + ') was 2 standard deviations below the mean.')
         print('The QC value you entered (' + str(qcval) + ') is 2 standard deviations above the mean.')
         print('This rule should only be interpreted within-run, not between-run.')
         g = input('\n' + 'Confirm result? (y/n): ')
     # 22S VIOLATION
-    if values[-1] > average+onesd*2 and qcval > average-onesd*2:
+    if values[-1] > average+onesd*2 and qcval > average-onesd*2 and g != 'n':
         print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 22S violation has occurred.")
         print('Previous QC value (' + str(values[-1]) + ') was 2 standard deviations above the mean.')
         print('The QC value you entered (' + str(qcval) + ') is 2 standard deviations above the mean.')
         print('Please check your laboratory policy before proceeding to enter this result into the database.')
         g = input('\n' + 'Confirm result? (y/n): ')
-    if values[-1] < average-onesd*2 and qcval < average+onesd*2:
+    if values[-1] < average-onesd*2 and qcval < average+onesd*2 and g != 'n':
         print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 22S violation has occurred.")
         print('Previous QC value (' + str(values[-1]) + ') was 2 standard deviations below the mean.')
         print('The QC value you entered (' + str(qcval) + ') is 2 standard deviations below the mean.')
         print('Please check your laboratory policy before proceeding to enter this result into the database.')
         g = input('\n' + 'Confirm result? (y/n): ')
     # 41S VIOLATION
-    if values[-3] > average+onesd and values[-2] > average+onesd and values[-1] > average+onesd and qcval > average+onesd:
+    if values[-3] > average+onesd and values[-2] > average+onesd and values[-1] > average+onesd and qcval > average+onesd and g != 'n':
         print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 41S violation has occurred.")
         print('The last 4 QC values all fall at least 1 standard deviation above the mean.')
         print('The QC value you entered:' + str(qcval))
         print('Please check your laboratory policy before proceeding to enter this result into the database.')
         g = input('\n' + 'Confirm result? (y/n): ')
-    if values[-3] < average+onesd and values[-2] < average+onesd and values[-1] < average+onesd and qcval < average+onesd:
+    if values[-3] < average+onesd and values[-2] < average+onesd and values[-1] < average+onesd and qcval < average+onesd and g != 'n':
         print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 41S violation has occurred.")
         print('The last 4 QC values all fall at least 1 standard deviation below the mean.')
         print('The QC value you entered:' + str(qcval))
