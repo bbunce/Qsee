@@ -1,4 +1,2 @@
-flask_app/data.db
-flask_app/data.db-journal
-__pycache*
 .venv/
+QualityControl/__pycache__*
