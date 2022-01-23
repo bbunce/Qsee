@@ -208,7 +208,8 @@ def result_menu():
         chart = MR_ControlChart()
         chart.fit(values2, dates2)
         chart.ControlChart(d2=1.128, D3=0, D4=3.267)  # Random values for now. Requires assignment for mR chart.
-        # Terminal print block
+        # Terminal print block - redundant now image is generated
+        '''
         print("NUMBER OF ENTRIES: " + str(len(values)))
         print("MEAN: " + str(average))
         print("SD+1: " + str(average + onesd))
@@ -218,14 +219,14 @@ def result_menu():
         print("SD-2: " + str(average - onesd * 2))
         print("SD-3: " + str(average - onesd * 3))
         print("CV: " + str(cov) + "%")
+        '''
         # Check COV standard
         if cov < 5:
-            print('\n' + Style.BRIGHT + Back.GREEN + Fore.WHITE + "Assay performance is excellent.")
+            print('\n' + Style.BRIGHT + Back.GREEN + Fore.BLACK + "Assay performance is excellent.")
         if 5 < cov < 10:
             print('\n' + Style.BRIGHT + Back.YELLOW + Fore.BLACK + "Assay performance is acceptable")
         if cov > 10:
-            print(
-                '\n' + Style.BRIGHT + Back.RED + Fore.BLACK + "Co-efficient of variance measurement in this assay is high. ")
+            print('\n' + Style.BRIGHT + Back.RED + Fore.BLACK + "Co-efficient of variance measurement in this assay is high.")
     print('\n' + Style.DIM + Back.BLACK + Fore.RED + aload + " assay menu")
     print('\n' + '1. Add new QC data')
     print('2. Modify existing data')
@@ -350,7 +351,7 @@ def westgard_check():
         if xscore == 9:
             print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 10x violation has occurred.")
             print("The last 10 QC values input have all fallen above the mean.")
-            print("This can be indicative of systematic errors within the assay.")
+            print("This can be indicative of systematic error(s) within the assay.")
             print('Please check your laboratory policy before proceeding to enter this result into the database.')
             g = input('\n' + 'Confirm result? (y/n): ')
             if g == 'y' or g == 'Y':
