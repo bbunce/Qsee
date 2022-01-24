@@ -1,0 +1,10 @@
+{% if list_assay %}
+    <ul>
+    {% for assay in list_assay %}
+        <!-- <li><a href="/assays/{{assay.id}}/">{{ assay.assay_name }}</a></li> -->
+        <li><a href="{% url 'tests' assay.id %}">{{ assay.assay_name}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
