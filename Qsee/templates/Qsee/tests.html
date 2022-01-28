@@ -1,0 +1,22 @@
+{% extends 'Qsee/base.html' %}
+
+{%block title %}QC Results{% endblock %}
+
+{% block content %}
+<h3>Test data for {{control.assay_id}}-{{control.control_name}} (lot# {{control.lot_number}})</h3>
+<h4><a href="{% url 'test_input' control.id%}">Add control data</a></h4>
+{% if tests_analyser %}
+    <ul>
+    {% for analyser, tests in tests_analyser.items %}
+        <li><h4>{{analyser}}</h4></li>
+        <ul>
+            {% for test in tests %}
+                <li>{{test.result}}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No test data available.</p>
+{% endif %}
+{% endblock %}

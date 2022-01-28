@@ -1,0 +1,16 @@
+{% extends 'Qsee/base.html' %}
+
+{%block title %}Controls{% endblock %}
+
+{% block content %}
+<h3>List of available controls for {{assay.assay_name}}</h3>
+{% if controls %}
+    <ul>
+    {% for control in controls %}
+        <li><a href="{% url 'tests' control.id%}">{{control.control_name}}|{{control.lot_number}}|{{control.active}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No controls available.</p>
+{% endif %}
+{% endblock %}

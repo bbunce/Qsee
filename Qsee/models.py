@@ -11,7 +11,8 @@ class Assay(models.Model):
 class Control(models.Model):
     assay_id = models.ForeignKey(Assay, on_delete=models.CASCADE)
     control_name = models.CharField(max_length=50)
-    lot_number = models.CharField(max_length=50)  
+    lot_number = models.CharField(max_length=50)
+    # date_added = models.DateField()  
     active = models.BooleanField(default=True)
 
     def __str__(self):
