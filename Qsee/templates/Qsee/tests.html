@@ -4,7 +4,7 @@
 
 {% block content %}
 <h3>Test data for {{control.assay_id}}-{{control.control_name}} (lot# {{control.lot_number}})</h3>
-<h4><a href="{% url 'test_input' control.id%}">Add control data</a></h4>
+<h4><a href="{% url 'test_input' %}">Add control data</a></h4>
 {% if tests_analyser %}
     <ul>
     {% for analyser, tests in tests_analyser.items %}

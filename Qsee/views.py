@@ -1,6 +1,7 @@
-from django.http import HttpResponse, Http404, HttpResponseNotAllowed
+from django.http import HttpResponse, Http404, HttpResponseNotAllowed, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, get_list_or_404
 from .models import Assay, Control, Analyser, Test
+from .forms import TestInputForm, AnalyserForm
 
 # Create your views here.
 def index(request):
@@ -35,12 +36,35 @@ def tests(request, control_id):
     tests_analyser = {}
     for analyser in analyser_ids:
         tests_analyser[analyser] = Test.objects.filter(control_id=control_id, analyser_id=analyser)
+
     return render(request, 'Qsee/tests.html', {'control': control, 'tests_analyser': tests_analyser})
 
 def settings(request):
-    return HttpResponse("Settings")
+    form = AnalyserForm()
+    if request.method == "POST":
+        form = AnalyserForm(request.POST)
+        if form.is_valid():
+            analyser = form.cleaned_data["analyser"]
+            print("Analyser:", analyser)
+            add_analyser = Analyser(analyser_name=analyser)
+            add_analyser.save()
+    return render(request, 'Qsee/settings.html', {"form": form})
 
-def test_input(request, control_id):
-    
-    return render(request, 'Qsee/test_input.html')
+def test_input(request):
+    form = TestInputForm()
+    if request.method == "POST":
+        form = TestInputForm(request.POST)
+        if form.is_valid():
+            result = form.cleaned_data["result"]
+            date = form.cleaned_data["test_date"]
+            control = form.cleaned_data["control_id"]
+            analyser = form.cleaned_data["analyser_id"]
+            operator = form.cleaned_data["operator"]
+            note = form.cleaned_data["note"]
+            print(result, date, control, analyser, operator, note)
+            test = Test(result=result, test_date=date, control_id=Control.objects.get(pk=control), \
+                        analyser_id=Analyser.objects.get(pk=analyser), operator=operator, note=note)
+            test.save()
+            return HttpResponseRedirect(f'/tests/{control}')
+    return render(request, 'Qsee/test_input.html', {"form": form})
 

@@ -28,7 +28,7 @@ class Analyser(models.Model):
 
 class Test(models.Model):
     result = models.FloatField() 
-    test_date = models.DateTimeField()
+    test_date = models.CharField(max_length=200, blank=True)
     control_id = models.ForeignKey(Control, on_delete=models.CASCADE)
     analyser_id = models.ForeignKey(Analyser, on_delete=models.CASCADE)
     operator = models.CharField(max_length=50)

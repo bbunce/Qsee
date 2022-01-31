@@ -3,7 +3,7 @@
 {%block title %}Input Control Data{% endblock %}
 
 {% block content %}
-<form method="POST" action='/test_input/'>
+<form method="POST" action='/settings/'>
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit", name="save">Save</button>
