@@ -361,6 +361,16 @@ def westgard_check():
                 add_db()
             else:
                 return
+        if xscore == -9:
+            print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 10x violation has occurred.")
+            print("The last 10 QC values input have all fallen below the mean.")
+            print("This can be indicative of systematic error(s) within the assay.")
+            print('Please check your laboratory policy before proceeding to enter this result into the database.')
+            g = input('\n' + 'Confirm result? (y/n): ')
+            if g == 'y' or g == 'Y':
+                add_db()
+            else:
+                return
     add_db()
 
 
