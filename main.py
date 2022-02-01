@@ -2,6 +2,7 @@
 # App is dependent on local CSV files - code should be adapted to utilise API/db storage
 # Switch from global variable use to exchanging data through function arguments?
 # main.py merge with flask_app/main.py required.
+# TO FIX - UKAS standards require 20 runs, not 10.
 import datetime
 
 import numpy as np
@@ -190,10 +191,10 @@ def result_menu():
     dates = current['DATE'].tolist()
     dates2 = np.array(dates)
     total = 0
-    # Require at least 10 QC entries before any kind of analysis can be made.
-    if len(values) < 10:
+    # Require at least 20 QC entries before any kind of analysis can be made.
+    if len(values) < 20:
         print("There are not enough QC entries to formulate an accurate Westgard plot. Currently: " + str(len(values)))
-        print("You require at least 10 to begin.")
+        print("You require at least 20 to begin.")
     else:
         # Takes all QC values in list to generate a global COV and SD figure
         global onesd
