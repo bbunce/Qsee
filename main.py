@@ -2,7 +2,6 @@
 # App is dependent on local CSV files - code should be adapted to utilise API/db storage
 # Switch from global variable use to exchanging data through function arguments?
 # main.py merge with flask_app/main.py required.
-# TO FIX - UKAS standards require 20 runs, not 10.
 import datetime
 
 import numpy as np
@@ -71,8 +70,11 @@ class MR_ControlChart:
         plt.title(aload + " Quality Control Chart")
         # plt.xticks(np.arange(len(self.X)))
         plt.legend(loc='upper left')
-        plt.figtext(0.5, 0.01, "CV: " + str(round(cov, 2)) + "%. Total QC entries: " + str(len(self.X)), fontsize=10,
-                    ha="center", bbox={"facecolor": "grey", "alpha": 0.5, "pad": 5})
+        # Defining the co-efficient of variance and uncertainty measures (both absolute and relative)
+        plt.figtext(0.5, 0.01, "Measurement of uncertainty (absolute): " + str(round(onesd*2, 2)) + '\n' +
+                    "Measurement of uncertainty (relative): " + str(round((1 - ((average - onesd * 2) / average))
+                    * 100, 2)) + "%" + '\n' + "Co-efficient of variance: " + str(round(cov, 2)) + "%",
+                    fontsize=10, ha="center", bbox={"facecolor": "grey", "alpha": 0.5, "pad": 5})
         plt.show()
 
         # Plot an mR chart
