@@ -1,3 +1,4 @@
+"""Conflict - manually update main.py from commit 5e0369cc3c1aafbd8e524303d378393150433689 13/02/2022"""
 # QSee quality control monitor - v1.0a
 # App is dependent on local CSV files - code should be adapted to utilise API/db storage
 # Switch from global variable use to exchanging data through function arguments?
@@ -70,8 +71,11 @@ class MR_ControlChart:
         plt.title(aload + " Quality Control Chart")
         # plt.xticks(np.arange(len(self.X)))
         plt.legend(loc='upper left')
-        plt.figtext(0.5, 0.01, "CV: " + str(round(cov, 2)) + "%. Total QC entries: " + str(len(self.X)), fontsize=10,
-                    ha="center", bbox={"facecolor": "grey", "alpha": 0.5, "pad": 5})
+        # Defining the co-efficient of variance and uncertainty measures (both absolute and relative)
+        plt.figtext(0.5, 0.01, "Measurement of uncertainty (absolute): " + str(round(onesd*2, 2)) + '\n' +
+                    "Measurement of uncertainty (relative): " + str(round((1 - ((average - onesd * 2) / average))
+                    * 100, 2)) + "%" + '\n' + "Co-efficient of variance: " + str(round(cov, 2)) + "%",
+                    fontsize=10, ha="center", bbox={"facecolor": "grey", "alpha": 0.5, "pad": 5})
         plt.show()
 
         # Plot an mR chart
@@ -190,10 +194,10 @@ def result_menu():
     dates = current['DATE'].tolist()
     dates2 = np.array(dates)
     total = 0
-    # Require at least 10 QC entries before any kind of analysis can be made.
-    if len(values) < 10:
+    # Require at least 20 QC entries before any kind of analysis can be made.
+    if len(values) < 20:
         print("There are not enough QC entries to formulate an accurate Westgard plot. Currently: " + str(len(values)))
-        print("You require at least 10 to begin.")
+        print("You require at least 20 to begin.")
     else:
         # Takes all QC values in list to generate a global COV and SD figure
         global onesd
@@ -351,6 +355,16 @@ def westgard_check():
         if xscore == 9:
             print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 10x violation has occurred.")
             print("The last 10 QC values input have all fallen above the mean.")
+            print("This can be indicative of systematic error(s) within the assay.")
+            print('Please check your laboratory policy before proceeding to enter this result into the database.')
+            g = input('\n' + 'Confirm result? (y/n): ')
+            if g == 'y' or g == 'Y':
+                add_db()
+            else:
+                return
+        if xscore == -9:
+            print('\n' + Style.DIM + Back.BLACK + Fore.YELLOW + "WARNING! A 10x violation has occurred.")
+            print("The last 10 QC values input have all fallen below the mean.")
             print("This can be indicative of systematic error(s) within the assay.")
             print('Please check your laboratory policy before proceeding to enter this result into the database.')
             g = input('\n' + 'Confirm result? (y/n): ')
