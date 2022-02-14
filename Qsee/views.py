@@ -40,6 +40,7 @@ def qsee_error(request):
 
 def tests(request, control_id):
     """Displays all the results for the control separated by the analyser they were used on"""
+    analysers = Analyser.objects.all()
     control= Control.objects.get(id=control_id)
     # get a unique list of analysers this control has been used on
     analyser_ids = set([id.analyser_id for id in list(Test.objects.filter(control_id = control_id))])
@@ -48,7 +49,7 @@ def tests(request, control_id):
     for analyser in analyser_ids:
         tests_analyser[analyser] = Test.objects.filter(control_id=control_id, analyser_id=analyser)
 
-    return render(request, 'Qsee/tests.html', {'control': control, 'tests_analyser': tests_analyser})
+    return render(request, 'Qsee/tests.html', {'control': control, 'tests_analyser': tests_analyser, 'analysers': analysers})
 
 def settings(request):
     """Displays available assays, control and analysers. Each section has a form so that new items for
@@ -95,10 +96,10 @@ def settings_control(request):
             assay_id = Assay.objects.get(pk=form.cleaned_data['assay_id'])
             control_name = form.cleaned_data["control_name"]
             lot_number = form.cleaned_data["lot_number"]
-            # date_added = form.cleaned_data["date_added"]
+            date_added = form.cleaned_data["date_added"]
             active = form.cleaned_data["active"]
             add_control = Control(assay_id=assay_id, control_name=control_name,
-                                lot_number=lot_number, active=active)
+                                lot_number=lot_number, date_added=date_added, active=active)
             add_control.save()
             return HttpResponseRedirect('/settings/')
     # if an error occurs go to qsee_error page

@@ -12,7 +12,7 @@ class Control(models.Model):
     assay_id = models.ForeignKey(Assay, on_delete=models.CASCADE)
     control_name = models.CharField(max_length=50)
     lot_number = models.CharField(max_length=50)
-    # date_added = models.DateField()  
+    date_added = models.DateField()  
     active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -27,7 +27,7 @@ class Analyser(models.Model):
 
 
 class Test(models.Model):
-    result = models.FloatField() 
+    result = models.FloatField()
     test_date = models.CharField(max_length=200, blank=True)
     control_id = models.ForeignKey(Control, on_delete=models.CASCADE)
     analyser_id = models.ForeignKey(Analyser, on_delete=models.CASCADE)
