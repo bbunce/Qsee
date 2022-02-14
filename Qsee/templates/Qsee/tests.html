@@ -14,8 +14,20 @@
             {% endfor %}
         </ul>
     {% endfor %}
+    <hr>
+    <p>Add control data to different analyser.</p>
+    <ul>
+        {% for analyser in analysers %}
+            <li><a href="{% url 'test_input' control.id analyser.id %}">{{analyser.analyser_name}}</a></li>
+        {% endfor %}
     </ul>
 {% else %}
-    <p>No test data available.</p>
+    <hr>
+    <p>No test data available. Select analyser to add control data.</p>
+    <ul>
+        {% for analyser in analysers %}
+            <li><a href="{% url 'test_input' control.id analyser.id %}">{{analyser.analyser_name}}</a></li>
+        {% endfor %}
+    </ul>
 {% endif %}
 {% endblock %}
