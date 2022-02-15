@@ -6,13 +6,6 @@ import numpy as np
 import pandas as pd
 import math
 
-# Global variables
-aload = 'SARS_CoV_2'  # TEMPORARY
-onesd = 0  # Measure of a single standard deviation in the assay
-cov = 0  # Co-efficient of variance calculation
-qcval = 0  # QC value entry
-average = 0  # Mean value
-values = []  # List containing all previous results
 
 # Create your views here.
 def index(request):
@@ -50,7 +43,7 @@ def qsee_error(request):
     return render(request, 'Qsee/404Error.html')
 
 def result_menu(control_id):
-    global values
+
     values = list(Test.objects.filter(control_id = control_id).order_by('id').values_list('result', flat=True))
     print(values)
     #values = [float(i) for i in values]  # Converts all values in list to floats
@@ -65,13 +58,10 @@ def result_menu(control_id):
         print("You require at least 20 to begin.")
     else:
         # Takes all QC values in list to generate a global COV and SD figure
-        global onesd
         onesd = stdev(values)
         for i in values:
             total += i
-        global average
         average = total / len(values)
-        global cov
         cov = (onesd / average) * 100
         # Send array of control values to QC chart
         chart = MR_ControlChart()

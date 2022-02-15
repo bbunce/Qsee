@@ -11,7 +11,7 @@
         <ul>
             {% load static %}
             <img src="{% static "SARS_CoV_2.svg" %}" alt="Quality control results" width="75%" height="75%">
-            {% for test in tests %}
+            {% for test in tests reversed %}
                 <li>{{test.result}} ({{test.test_date}})</li>
             {% endfor %}
         </ul>
