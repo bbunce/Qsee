@@ -1,3 +1,4 @@
+import os
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 from .models import Assay, Control, Analyser, Test
@@ -6,6 +7,7 @@ from .forms import TestInputForm, AssayForm, ControlForm, AnalyserForm
 # Create your views here.
 def index(request):
     """Returns Qsee homepage"""
+    log_check_size()
     return render(request, 'Qsee/index.html')
 
 def assays(request):
@@ -143,3 +145,22 @@ def test_input(request, control_id, analyser_id):
             return HttpResponseRedirect(f'/tests/{control}')
     return render(request, 'Qsee/test_input.html', {"form": form, "control_details": control_details, "analyser_details": analyser_details})
 
+
+def log_check_size():
+    """Log file clean-up. Clears log file when it reaches 1Mb to save space."""
+    # Error handling to inform user to reset server in the event the log file is accidently
+    # when the server is running.
+    try:
+        log_file = os.getcwd() + '/Qsee/qsee_debug.log'
+        log_size = os.path.getsize(log_file)
+        # Clear log file when it reaches 1Mb in size
+        if log_size > 1000000:
+            print('Log file cleared')
+            f = open(log_file, 'w')
+            f.write('')
+            f.close()
+        else:
+            print(f'Log file is {log_size} bytes. Log file will be cleared when it reaches 1Mb')
+    except FileNotFoundError as e:
+        print(e)
+        print("Log file accidently deleted. Logs not recorded! Reset server to reset logging.")
