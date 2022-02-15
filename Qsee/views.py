@@ -127,7 +127,7 @@ def settings_control(request):
             assay_id = Assay.objects.get(pk=form.cleaned_data['assay_id'])
             control_name = form.cleaned_data["control_name"]
             lot_number = form.cleaned_data["lot_number"]
-            date_added = form.cleaned_data["date_added"]
+            # date_added = form.cleaned_data["date_added"]
             active = form.cleaned_data["active"]
             add_control = Control(assay_id=assay_id, control_name=control_name,
                                 lot_number=lot_number, date_added=date_added, active=active)

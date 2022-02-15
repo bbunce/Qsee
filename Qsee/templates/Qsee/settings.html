@@ -9,7 +9,7 @@
 {% if assays %}
     <ul>
         {% for assay in assays %}
-            <li>Assay ID: {{assay.id}} - {{assay.assay_name}} <button type="subimit", name="{{assay.id}}">Delete</button></li>
+            <li>Assay ID: {{assay.id}} - {{assay.assay_name}} <button type="submit", name="{{assay.id}}">Delete</button></li>
         {% endfor %}
     </ul>
 {% else %}
@@ -28,7 +28,7 @@
 {% if controls %}
     <ul>
         {% for control in controls %}
-            <li>{{control}} <button type="subimit", name="{{control.id}}">Delete</button></li>
+            <li>{{control}} <button type="submit", name="{{control.id}}">Delete</button></li>
         {% endfor %}
     </ul>
 {% else %}
@@ -48,7 +48,7 @@
 {% if analysers %}
     <ul>
         {% for analyser in analysers %}
-            <li>{{analyser.analyser_name}} <button type="subimit", name="{{analyser.id}}">Delete</button></li>
+            <li>{{analyser.analyser_name}} <button type="submit", name="{{analyser.id}}">Delete</button></li>
         {% endfor %}
     </ul>
 {% else %}

@@ -70,6 +70,7 @@ class MR_ControlChart():
         cl_mR = self.mR.mean()
         lcl_mR = D3 * self.mR.mean()
         # Plot an X chart
+        plt.switch_backend('Agg')
         plt.figure(figsize=(20, 10))
         xi = list(range(len(self.Y)))
         plt.xticks(xi, self.Y)
