@@ -15,7 +15,7 @@ class ControlForm(forms.Form):
     control_name = forms.CharField()
     lot_number = forms.CharField()
     # date_added = forms.DateField()
-    active = forms.BooleanField(required=False)
+    active = forms.BooleanField(required=True)
 
 class AnalyserForm(forms.Form):
     analyser = forms.CharField()

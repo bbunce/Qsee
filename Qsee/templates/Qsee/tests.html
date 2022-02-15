@@ -1,14 +1,16 @@
 {% extends 'Qsee/base.html' %}
 
-{%block title %}QC Results{% endblock %}
+{%block title %}Quality Report{% endblock %}
 
 {% block content %}
-<h3>Test data for {{control.assay_id}}-{{control.control_name}} (lot# {{control.lot_number}})</h3>
+<h3>Test data for {{control.assay_id}} - (Control: {{control.control_name}},    Lot#: {{control.lot_number}})</h3>
 {% if tests_analyser %}
     <ul>
     {% for analyser, tests in tests_analyser.items %}
         <li><h4>{{analyser}} <a href="{% url 'test_input' control.id analyser.id %}">Add control data</a></h4></li>
         <ul>
+            {% load static %}
+            <img src="{% static "SARS_CoV_2.svg" %}" alt="Quality control results" width="75%" height="75%">
             {% for test in tests %}
                 <li>{{test.result}} ({{test.test_date}})</li>
             {% endfor %}
