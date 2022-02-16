@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="Information pass from form to validators">
-      <change beforePath="$PROJECT_DIR$/Qsee/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/templates/Qsee/test_input.html" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/templates/Qsee/test_input.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Qsee/templates/Qsee/tests.html" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/templates/Qsee/tests.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +79,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645010398018</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Information pass from form to validators">
+      <created>1645010753951</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1645010753951</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
