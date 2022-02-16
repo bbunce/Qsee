@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Assay(models.Model):
-    assay_name = models.CharField(max_length=50)
+    assay_name = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
         return self.assay_name
@@ -12,7 +12,7 @@ class Control(models.Model):
     assay_id = models.ForeignKey(Assay, on_delete=models.CASCADE)
     control_name = models.CharField(max_length=50)
     lot_number = models.CharField(max_length=50)
-    date_added = models.DateField()  
+    date_added = models.DateField()
     active = models.BooleanField(default=True)
 
     def __str__(self):
