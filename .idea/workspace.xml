@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="Information pass from form to validators">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/templates/Qsee/tests.html" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/templates/Qsee/tests.html" afterDir="false" />
+    <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="Graphical update - extra validation during data entry">
+      <change beforePath="$PROJECT_DIR$/Qsee/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Qsee/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,11 +25,15 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="256panQB86130lXkKUA2YxiOwYu" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -86,7 +89,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645010753951</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Graphical update - extra validation during data entry">
+      <created>1645012131265</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1645012131265</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -101,10 +111,12 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Initial branch commit" />
     <MESSAGE value="Removing redundant global vars" />
     <MESSAGE value="Westgard validation" />
     <MESSAGE value="Information pass from form to validators" />
-    <option name="LAST_COMMIT_MESSAGE" value="Information pass from form to validators" />
+    <MESSAGE value="Graphical update - extra validation during data entry" />
+    <option name="LAST_COMMIT_MESSAGE" value="Graphical update - extra validation during data entry" />
   </component>
 </project>

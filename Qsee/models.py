@@ -61,8 +61,8 @@ class MR_ControlChart():
         for i in range(len(self.mR)):
             self.mR[i] = abs(self.X[i + 1] - self.X[i])
 
-    def ControlChart(self, d2, D4, D3, onesd, average, cov):
-        aload = 'SARS_CoV_2'  # TEMPORARY
+    def ControlChart(self, d2, D4, D3, onesd, average, cov, aload):
+        # aload = 'SARS_CoV_2'  # TEMPORARY
         # ucl_X = self.X.mean() + (3 / d2 * np.sqrt(self.number_of_sample)) * self.mR.mean()
         ucl_X = self.X.mean() + onesd*3
         cl2_X = self.X.mean() + onesd*2

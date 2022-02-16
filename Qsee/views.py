@@ -66,7 +66,13 @@ def result_menu(control_id):
         # Send array of control values to QC chart
         chart = MR_ControlChart()
         chart.fit(values2, dates2)
-        chart.ControlChart(d2=1.128, D3=0, D4=3.267, onesd=onesd, average=average, cov=cov)  # Random values for now. Requires assignment for mR chart.
+
+        analysers = Analyser.objects.all()
+        control = Control.objects.get(id=control_id)
+        # get a unique list of analysers this control has been used on
+        analyser_ids = set([id.analyser_id for id in list(Test.objects.filter(control_id=control_id))])
+
+        chart.ControlChart(d2=1.128, D3=0, D4=3.267, onesd=onesd, average=average, cov=cov, aload=str(control.assay_id))  # Random values
 
 def tests(request, control_id):
     """Displays all the results for the control separated by the analyser they were used on"""
