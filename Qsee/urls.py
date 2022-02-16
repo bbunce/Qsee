@@ -11,5 +11,5 @@ urlpatterns = [
     path('settings/', views.settings, name='settings'),
     path('settings/assay/', views.settings_assay, name='settings_assay'),
     path('settings/control/', views.settings_control, name='settings_control'),
-    path('settings/analyser/', views.settings_analyser, name='settings_analsyer')
+    path('settings/analyser/', views.settings_analyser, name='settings_analyser')
 ]

@@ -1,8 +1,12 @@
 import os
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
-from .models import Assay, Control, Analyser, Test
+from .models import Assay, Control, Analyser, Test, MR_ControlChart, stdev
 from .forms import TestInputForm, AssayForm, ControlForm, AnalyserForm
+import numpy as np
+import pandas as pd
+import math
+
 
 # Create your views here.
 def index(request):
@@ -11,7 +15,7 @@ def index(request):
     return render(request, 'Qsee/index.html')
 
 def assays(request):
-    """Returns page that displays all availabe assays"""
+    """Returns page that displays all available assays"""
     # database query that returns all the objects in the Assay table
     # SQL: SELECT * FROM assay;
     assays = Assay.objects.all()
@@ -40,6 +44,38 @@ def qsee_error(request):
     the event of an error occuring"""
     return render(request, 'Qsee/404Error.html')
 
+def result_menu(control_id):
+
+    values = list(Test.objects.filter(control_id = control_id).order_by('id').values_list('result', flat=True))
+    print(values)
+    #values = [float(i) for i in values]  # Converts all values in list to floats
+    values2 = np.array(values)
+    dates = list(Test.objects.filter(control_id = control_id).order_by('id').values_list('test_date', flat=True))
+    print(dates)
+    dates2 = np.array(dates)
+    total = 0
+    # Require at least 20 QC entries before any kind of analysis can be made.
+    if len(values) < 20:
+        print("There are not enough QC entries to formulate an accurate Westgard plot. Currently: " + str(len(values)))
+        print("You require at least 20 to begin.")
+    else:
+        # Takes all QC values in list to generate a global COV and SD figure
+        onesd = stdev(values)
+        for i in values:
+            total += i
+        average = total / len(values)
+        cov = (onesd / average) * 100
+        # Send array of control values to QC chart
+        chart = MR_ControlChart()
+        chart.fit(values2, dates2)
+
+        analysers = Analyser.objects.all()
+        control = Control.objects.get(id=control_id)
+        # get a unique list of analysers this control has been used on
+        analyser_ids = set([id.analyser_id for id in list(Test.objects.filter(control_id=control_id))])
+
+        chart.ControlChart(d2=1.128, D3=0, D4=3.267, onesd=onesd, average=average, cov=cov, aload=str(control.assay_id)+" " +str(control.control_name))  # Random values
+
 def tests(request, control_id):
     """Displays all the results for the control separated by the analyser they were used on"""
     analysers = Analyser.objects.all()
@@ -51,7 +87,8 @@ def tests(request, control_id):
     for analyser in analyser_ids:
         tests_analyser[analyser] = Test.objects.filter(control_id=control_id, analyser_id=analyser)
 
-    return render(request, 'Qsee/tests.html', {'control': control, 'tests_analyser': tests_analyser, 'analysers': analysers})
+    result_menu(control_id)
+    return render(request, 'Qsee/tests.html', {'control': control, 'tests_analyser': tests_analyser, 'analysers': analysers, 'aload': str(control.assay_id)+" " +str(control.control_name)})
 
 def settings(request):
     """Displays available assays, control and analysers. Each section has a form so that new items for
@@ -65,8 +102,8 @@ def settings(request):
     return render(request, 'Qsee/settings.html', {"assays": assays,
                                                 "controls": controls,
                                                 "analysers": analysers,
-                                                "assay_form": assay_form, 
-                                                "control_form": control_form, 
+                                                "assay_form": assay_form,
+                                                "control_form": control_form,
                                                 "analyser_form": analyser_form})
 
 def settings_assay(request):
@@ -125,16 +162,17 @@ def settings_analyser(request):
 def test_input(request, control_id, analyser_id):
     """Form to allow user to add a control result to the Qsee database"""
     ctrl = Control.objects.get(pk=control_id)
-    # get control and analyser details from the url to so that the user can check that they are 
+    # get control and analyser details from the url to so that the user can check that they are
     # entering the results for the correct control on the correct analyser.
     control_details = f"{ctrl.assay_id} {ctrl.control_name}"
     analyser_details = Analyser.objects.get(pk=analyser_id).analyser_name
-    form = TestInputForm()
+    form = TestInputForm({'control_id': control_id})
     if request.method == "POST":
         form = TestInputForm(request.POST)
         if form.is_valid():
             result = form.cleaned_data["result"]
             date = form.cleaned_data["test_date"]
+            print(date)
             control = control_id
             analyser = analyser_id
             operator = form.cleaned_data["operator"]
@@ -143,7 +181,7 @@ def test_input(request, control_id, analyser_id):
                         analyser_id=Analyser.objects.get(pk=analyser), operator=operator, note=note)
             test.save()
             return HttpResponseRedirect(f'/tests/{control}')
-    return render(request, 'Qsee/test_input.html', {"form": form, "control_details": control_details, "analyser_details": analyser_details})
+    return render(request, 'Qsee/test_input.html', {"form": form, "control_details": control_details, "analyser_details": analyser_details, 'control_id': control_id})
 
 
 def log_check_size():

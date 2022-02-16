@@ -3,11 +3,11 @@
 {%block title %}Controls{% endblock %}
 
 {% block content %}
-<h3>List of available controls for {{assay.assay_name}}</h3>
+<h3>List of available controls for {{assay.assay_name}} </h3>
 {% if controls %}
     <ul>
     {% for control in controls %}
-        <li><a href="{% url 'tests' control.id%}">{{control.control_name}}|{{control.lot_number}}|{{control.active}}</a></li>
+        <li><a href="{% url 'tests' control.id%}">Control: {{control.control_name}} | Lot: {{control.lot_number}} | Active: {{control.active}}</a></li>
     {% endfor %}
     </ul>
 {% else %}
