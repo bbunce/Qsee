@@ -5,11 +5,11 @@ import math
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import datetime
 
 
 # Global
-
-con_id = 0
+con_id = 0  # Holds the assay_id status from the test_input form
 
 # Create your models here.
 class Assay(models.Model):
@@ -141,6 +141,16 @@ def cid(value):
     con_id = value
     return
 
+def datecheck(value):
+    try:
+        datetime.datetime.strptime(value, '%d/%m/%Y')
+    except ValueError:
+        raise ValidationError(
+            _('Incorrect date format. Please enter date as DD/MM/YYYY.'),
+            params={'value': value},
+        )
+        return
+
 def westgard(value):
     """ Perform a Westgard rule check before allowing result submission """
     values = list(Test.objects.filter(control_id = con_id).order_by('id').values_list('result', flat=True))
@@ -151,28 +161,79 @@ def westgard(value):
     average = total / len(values)
 
     """ Begin validation checks """
-
+    # 13S UCL/LCL VIOLATION
     if value > average+onesd*3:
         raise ValidationError(
-            _('A 3SD violation has occurred! ' + str(value) + ' exceeds the upper control limit.'),
+            _('3SD violation has occurred! ' + str(value) + ' exceeds the upper control limit.'),
             params={'value': value},
         )
         return
     if value < average-onesd*3:
         raise ValidationError(
-            _('A 3SD violation has occurred! ' + str(value) + ' exceeds the lower control limit.'),
+            _('3SD violation has occurred! ' + str(value) + ' exceeds the lower control limit.'),
             params={'value': value},
         )
         return
+
+    # R4S VIOLATION
     if values[-1] > average + onesd * 2 and value < average - onesd * 2:
         raise ValidationError(
-            _('A 3SD violation has occurred! ' + str(value) + ' exceeds the lower control limit.'),
+            _('R4S violation has occurred! ' + str(value) + ' exceeds the lower control limit.'),
             params={'value': value},
         )
         return
     if values[-1] < average - onesd * 2 and value > average + onesd * 2:
         raise ValidationError(
-            _('A 3SD violation has occurred! ' + str(value) + ' exceeds the lower control limit.'),
+            _('R4S violation has occurred! ' + str(value) + ' exceeds the lower control limit.'),
             params={'value': value},
         )
         return
+
+    # 22S UCL/LCL VIOLATION
+    if values[-1] > average + onesd * 2 and value > average + onesd * 2:
+        raise ValidationError(
+            _('22S violation has occurred! ' + str(value) + ' exceeds the lower control limit.'),
+            params={'value': value},
+        )
+        return
+    if values[-1] < average - onesd * 2 and value < average - onesd * 2:
+        raise ValidationError(
+            _('22S violation has occurred! ' + str(value) + ' exceeds the lower control limit.'),
+            params={'value': value},
+        )
+        return
+    # 41S VIOLATION
+    if values[-3] > average + onesd and values[-2] > average + onesd and values[-1] > average + onesd and value > average + onesd:
+        raise ValidationError(
+            _('41S violation has occurred! ' + str(value) + ' exceeds the lower control limit.'),
+            params={'value': value},
+        )
+        return
+    if values[-3] < average - onesd and values[-2] < average - onesd and values[-1] < average - onesd and qcval < average - onesd:
+        raise ValidationError(
+            _('41S violation has occurred! ' + str(value) + ' exceeds the lower control limit.'),
+            params={'value': value},
+        )
+        return
+
+    #10X VIOLATION
+    xscore = 0
+    for x in range(-9, 0, 1):
+        if value > average:
+            if values[x] > average:
+                xscore += 1
+        else:
+            if values[x] < average:
+                xscore -= 1
+        if xscore == 9:
+            raise ValidationError(
+                _('10x violation has occurred! ' + str(value) + ' exceeds the lower control limit.'),
+                params={'value': value},
+            )
+            return
+        if xscore == -9:
+            raise ValidationError(
+                _('10x violation has occurred! ' + str(value) + ' exceeds the lower control limit.'),
+                params={'value': value},
+            )
+            return
