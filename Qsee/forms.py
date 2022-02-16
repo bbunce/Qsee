@@ -1,8 +1,9 @@
 from django import forms
+from .models import westgard
 
 class TestInputForm(forms.Form):
     """Control and Analyser ID returned from test_input in view.py"""
-    result = forms.FloatField(min_value=0.0, max_value=45.0)
+    result = forms.FloatField(min_value=0.0, max_value=45.0, validators=[westgard])
     test_date = forms.CharField(required=False)
     operator = forms.CharField()
     note = forms.CharField(required=False)

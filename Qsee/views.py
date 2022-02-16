@@ -13,7 +13,7 @@ def index(request):
     return render(request, 'Qsee/index.html')
 
 def assays(request):
-    """Returns page that displays all availabe assays"""
+    """Returns page that displays all available assays"""
     # database query that returns all the objects in the Assay table
     # SQL: SELECT * FROM assay;
     assays = Assay.objects.all()

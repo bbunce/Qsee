@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 import math
 import numpy as np
 import pandas as pd
@@ -70,7 +72,7 @@ class MR_ControlChart():
         cl_mR = self.mR.mean()
         lcl_mR = D3 * self.mR.mean()
         # Plot an X chart
-        plt.switch_backend('Agg')
+        plt.switch_backend('Agg')  # Vital! Stops secondary threads generating redundant GUIs.
         plt.figure(figsize=(20, 10))
         xi = list(range(len(self.Y)))
         plt.xticks(xi, self.Y)
@@ -118,6 +120,7 @@ class MR_ControlChart():
         plt.xlabel("mR ")
         # plt.show() - DISABLED FOR NOW, COMPLETE
 
+
 def variance(data, ddof=0):
     n = len(data)
     mean = sum(data) / n
@@ -128,3 +131,19 @@ def stdev(data):
     var = variance(data)
     std_dev = math.sqrt(var)
     return std_dev
+
+def westgard(value):
+    """ Perform a Westgard rule check before allowing result submission """
+    values = list(Test.objects.filter(control_id = control_id).order_by('id').values_list('result', flat=True))
+    onesd = stdev(values)
+    total = 0
+    for i in values:
+        total += i
+    average = total / len(values)
+
+    if value > average+onesd*3:
+        raise ValidationError(
+            _('A 3SD violation has occurred! ' + str(value) + ' exceeds the upper control limit.'),
+            params={'value': value},
+        )
+        return
