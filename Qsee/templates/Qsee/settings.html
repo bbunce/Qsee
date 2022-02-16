@@ -1,0 +1,64 @@
+{% extends 'Qsee/base.html' %}
+
+{%block title %}Input Control Data{% endblock %}
+
+{% block content %}
+<hr>
+<!-- List available assays and form to add more. -->
+<h2>Available assays</h2>
+{% if assays %}
+    <ul>
+        {% for assay in assays %}
+            <li>Assay ID: {{assay.id}} - {{assay.assay_name}} <button type="submit", name="{{assay.id}}">Delete</button></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No assays available.</p>
+{% endif %}
+<h2>Add Assay</h2>
+<form method="POST" action='/settings/assay/'>
+    {% csrf_token %}
+    {{assay_form.as_p}}
+    <button type="submit", name="add">Add</button>
+</form>
+<hr>
+
+<!-- List available controls and form to add more. -->
+<h2>Available controls</h2>
+{% if controls %}
+    <ul>
+        {% for control in controls %}
+            <li>{{control}} <button type="submit", name="{{control.id}}">Delete</button></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No controls available.</p>
+{% endif %}
+<h2>Add Control</h2>
+<p>Check available assays for assay id value.</p>
+<form method="POST" action='/settings/control/'>
+    {% csrf_token %}
+    {{control_form.as_p}}
+    <button type="submit", name="add">Add</button>
+</form>
+<hr>
+
+<!-- List available analysers and form to add more. -->
+<h2>Available analysers</h2>
+{% if analysers %}
+    <ul>
+        {% for analyser in analysers %}
+            <li>{{analyser.analyser_name}} <button type="submit", name="{{analyser.id}}">Delete</button></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No analysers available.</p>
+{% endif %}
+<h2>Add Analyser</h2>
+<form method="POST" action='/settings/analyser/'>
+    {% csrf_token %}
+    {{analyser_form.as_p}}
+    <button type="submit", name="add">Add</button>
+</form>
+<hr>
+{% endblock %}

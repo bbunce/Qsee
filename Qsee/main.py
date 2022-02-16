@@ -1,7 +1,8 @@
+"""Conflict - manually update main.py from commit 5e0369cc3c1aafbd8e524303d378393150433689 13/02/2022"""
 # QSee quality control monitor - v1.0a
 # App is dependent on local CSV files - code should be adapted to utilise API/db storage
 # Switch from global variable use to exchanging data through function arguments?
-# main.py merge with flask_app/main.py required.
+
 import datetime
 
 import numpy as np

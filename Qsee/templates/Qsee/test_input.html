@@ -1,0 +1,12 @@
+{% extends 'Qsee/base.html' %}
+
+{%block title %}Input Control Data{% endblock %}
+
+{% block content %}
+<h4>Add control data for {{control_details}} control used on {{analyser_details}} analyser.</h4>
+<form method="POST" action='#'>
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit", name="save">Save</button>
+</form>
+{% endblock %}

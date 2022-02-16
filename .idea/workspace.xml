@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="Function to check date format is valid on result entry" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="256panQB86130lXkKUA2YxiOwYu" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="" />
+      <created>1644857457895</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1644857457895</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initial branch commit">
+      <created>1644927472652</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1644927472652</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Removing redundant global vars">
+      <created>1644928484194</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1644928484194</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Removing redundant global vars">
+      <created>1644942607350</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1644942607350</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Westgard validation">
+      <created>1645002974871</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1645002974871</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Information pass from form to validators">
+      <created>1645010398018</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1645010398018</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Information pass from form to validators">
+      <created>1645010753951</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1645010753951</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Graphical update - extra validation during data entry">
+      <created>1645012131265</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1645012131265</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Passing control_assay.id variable to LJ plot function.">
+      <created>1645012386860</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1645012386860</updated>
+    </task>
+    <task id="LOCAL-00009" summary="More Westgard checks">
+      <created>1645016612513</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1645016612513</updated>
+    </task>
+    <task id="LOCAL-00010" summary="More Westgard checks">
+      <created>1645016740960</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1645016740960</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Function to check date format is valid on result entry">
+      <created>1645019517758</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1645019517758</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Initial branch commit" />
+    <MESSAGE value="Removing redundant global vars" />
+    <MESSAGE value="Westgard validation" />
+    <MESSAGE value="Information pass from form to validators" />
+    <MESSAGE value="Graphical update - extra validation during data entry" />
+    <MESSAGE value="Passing control_assay.id variable to LJ plot function." />
+    <MESSAGE value="More Westgard checks" />
+    <MESSAGE value="Function to check date format is valid on result entry" />
+    <option name="LAST_COMMIT_MESSAGE" value="Function to check date format is valid on result entry" />
+  </component>
+</project>

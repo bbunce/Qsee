@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1>Qsee: {% block title %}{% endblock %}</h1>
+    </head>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'assays' %}">Assays</a></li>
+            <li><a href="{% url 'settings' %}">Settings</a></li>
+        </ul>
+    </nav>
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+    <footer></footer>
+</html>

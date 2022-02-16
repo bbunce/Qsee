@@ -1,0 +1,16 @@
+{% extends 'Qsee/base.html' %}
+
+{%block title %}Assays{% endblock %}
+
+{% block content %}
+    <h3>List of available assays</h3>
+    {% if assays %}
+        <ul>
+        {% for assay in assays %}
+            <li><a href="{% url 'controls' assay.id %}">{{ assay.assay_name}} | (Platform: {{ analyser.analyser_name }})</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Unavailable.</p>
+    {% endif %}
+{% endblock %}
