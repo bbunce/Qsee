@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="Passing control_assay.id variable to LJ plot function.">
-      <change afterPath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 n_gene_pos.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/templates/Qsee/tests.html" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/templates/Qsee/tests.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="More Westgard checks" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -106,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645012386860</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="More Westgard checks">
+      <created>1645016612513</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1645016612513</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -128,6 +129,7 @@
     <MESSAGE value="Information pass from form to validators" />
     <MESSAGE value="Graphical update - extra validation during data entry" />
     <MESSAGE value="Passing control_assay.id variable to LJ plot function." />
-    <option name="LAST_COMMIT_MESSAGE" value="Passing control_assay.id variable to LJ plot function." />
+    <MESSAGE value="More Westgard checks" />
+    <option name="LAST_COMMIT_MESSAGE" value="More Westgard checks" />
   </component>
 </project>
