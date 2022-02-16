@@ -1,50 +1,44 @@
 # Qsee: Quality Control Management System
+Developed by George Doyle and Ben Bunce
+
+### Project description
+
+
+### Installation
+- Clone the github ```<branch>``` repositry.
+- Set up a new virtual environment of your choice.
 
 ### Dependencies
-```pip install requirements.txt```
-### Environment
-Set environment paths
+- The list of required packages can be found in the ```requirements.txt``` file. 
+- Install the all the packages ```pip install -r requirements.txt```
 
-```export FLASK_APP=flask_app/main.py```
+### Setup
+- Activate virtual environment.
+- Navigate to the root folder that contains the ```manage.py``` file.
+- Start Django server ```python3 manage.py runserver```.
+- Navigate to localhost or http://127.0.0.1:8000/ in your browser.
 
-```export FLASK_ENV=development```
+### Instructions
+#### Home Page
+- 3 navigational buttons; Home, Assays and Settings are navigation buttons that are always visible from any page.
 
-Run flask application
+#### Assays
+- Lists all available assays the laboratory have added to the Qsee system.
 
-```flask run```
+##### Controls
+- Clicking on an assay will display all the available controls associated with that assay.
+##### Quality Report
+- Displays quality control graph for each set of control data for under each different analyser it has been used on.
+##### Add control data
+- Clicking on this link will take the user to a form in which the test control data can be added to the database.
+- If the user wants to start recording testing data on a new analyser, a list of available analysers can be selected at the bottom of the page.
+##### Input control data
+- Form for the user to input the control testing data
+- Click save to save the record.
 
-## Database setup
-Database creation required before initially running application.
+### Settings
+- New assays, control and analysers can be added to the system.
 
-Open python interpreter (i.e. type ```python``` into the terminal)
-
-```
->>> from main import db
->>> from main import Value
->>> db.create_all()
-```
-
-### Adding records using python interpreter
-```
->>> r = Value(assay_type="covid-19 pos", value=19.0)
->>> db.session.add(r)
->>> db.session.commit()
->>> Value.query.all()
-[covid-19 pos - 19.0]
->>> r = Value(assay_type="RNA spike", value=44.0)
->>> db.session.add(r)
->>> db.session.commit()
->>> Value.query.all()
-[covid-19 pos - 19.0, RNA spike - 44.0]
-```
-
-### Adding records using JSON
-
-Run python ```add_data_db.py```. Comment out to use either manual / file method.
-
-### Delete records using python interpreter
-```
->>> Value.query.filter(Value.id == 1).delete()
->>> Value.query.filter(Value.assay_type == "covid-19 pos").delete()
-```
-
+### Contact Us
+- George Doyle <email>
+- Ben Bunce <email>
