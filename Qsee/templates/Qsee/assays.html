@@ -7,7 +7,7 @@
     {% if assays %}
         <ul>
         {% for assay in assays %}
-            <li><a href="{% url 'controls' assay.id %}">{{ assay.assay_name}} | (Platform: {{ analyser.analyser_name }})</a></li>
+            <li><a href="{% url 'controls' assay.id %}">{{ assay.assay_name}}</a></li>
         {% endfor %}
         </ul>
     {% else %}
