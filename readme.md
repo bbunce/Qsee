@@ -27,4 +27,6 @@ Major frameworks/libraries used to build this project;
 
 ### Features:
 
+### Error logging:
+
 ## Roadmap
