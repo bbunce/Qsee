@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="Westgard validation">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="Information pass from form to validators">
       <change beforePath="$PROJECT_DIR$/Qsee/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Qsee/templates/Qsee/test_input.html" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/templates/Qsee/test_input.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +71,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645002974871</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Information pass from form to validators">
+      <created>1645010398018</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1645010398018</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -93,6 +96,7 @@
     <MESSAGE value="Initial branch commit" />
     <MESSAGE value="Removing redundant global vars" />
     <MESSAGE value="Westgard validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Westgard validation" />
+    <MESSAGE value="Information pass from form to validators" />
+    <option name="LAST_COMMIT_MESSAGE" value="Information pass from form to validators" />
   </component>
 </project>
