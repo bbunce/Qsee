@@ -1,50 +1,30 @@
-# Qsee: Quality Control Management System
 
-### Dependencies
-```pip install requirements.txt```
-### Environment
-Set environment paths
+# QSee: Quality Control Monitor
 
-```export FLASK_APP=flask_app/main.py```
+## About the Project
 
-```export FLASK_ENV=development```
+QSee is a quality control visualisation tool that allows users to monitor internal quality control data through the generation of Levey-Jennings plots and the automatic application of Westgard rules.
 
-Run flask application
+![Screenshot of the dashboard](/screen1.png "Screenshot of the dashboard")
 
-```flask run```
+QSee is based on the Django framework and stores records in a SQLite database.
 
-## Database setup
-Database creation required before initially running application.
+## The Database
 
-Open python interpreter (i.e. type ```python``` into the terminal)
+QSee contains a pre-populated relational database that links assays to controls, analysers, lot numbers and individual results.
 
-```
->>> from main import db
->>> from main import Value
->>> db.create_all()
-```
+## Built With
 
-### Adding records using python interpreter
-```
->>> r = Value(assay_type="covid-19 pos", value=19.0)
->>> db.session.add(r)
->>> db.session.commit()
->>> Value.query.all()
-[covid-19 pos - 19.0]
->>> r = Value(assay_type="RNA spike", value=44.0)
->>> db.session.add(r)
->>> db.session.commit()
->>> Value.query.all()
-[covid-19 pos - 19.0, RNA spike - 44.0]
-```
+Major frameworks/libraries used to build this project;
 
-### Adding records using JSON
+#### SQLite
+#### Python
+#### Django
 
-Run python ```add_data_db.py```. Comment out to use either manual / file method.
+## Installation
 
-### Delete records using python interpreter
-```
->>> Value.query.filter(Value.id == 1).delete()
->>> Value.query.filter(Value.assay_type == "covid-19 pos").delete()
-```
+## Usage
 
+### Features:
+
+## Roadmap
