@@ -158,7 +158,7 @@ def test_input(request, control_id, analyser_id):
     # entering the results for the correct control on the correct analyser.
     control_details = f"{ctrl.assay_id} {ctrl.control_name}"
     analyser_details = Analyser.objects.get(pk=analyser_id).analyser_name
-    form = TestInputForm()
+    form = TestInputForm({'control_id': control_id})
     if request.method == "POST":
         form = TestInputForm(request.POST)
         if form.is_valid():
@@ -172,4 +172,4 @@ def test_input(request, control_id, analyser_id):
                         analyser_id=Analyser.objects.get(pk=analyser), operator=operator, note=note)
             test.save()
             return HttpResponseRedirect(f'/tests/{control}')
-    return render(request, 'Qsee/test_input.html', {"form": form, "control_details": control_details, "analyser_details": analyser_details})
+    return render(request, 'Qsee/test_input.html', {"form": form, "control_details": control_details, "analyser_details": analyser_details, 'control_id': control_id})

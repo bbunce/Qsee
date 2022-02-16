@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="">
+    <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="Westgard validation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Qsee/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Qsee/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Qsee/templates/Qsee/test_input.html" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/templates/Qsee/test_input.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Qsee/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +68,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644942607350</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Westgard validation">
+      <created>1645002974871</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1645002974871</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -84,6 +92,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial branch commit" />
     <MESSAGE value="Removing redundant global vars" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removing redundant global vars" />
+    <MESSAGE value="Westgard validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Westgard validation" />
   </component>
 </project>

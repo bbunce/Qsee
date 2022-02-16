@@ -6,6 +6,11 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+
+# Global
+
+con_id = 0
+
 # Create your models here.
 class Assay(models.Model):
     assay_name = models.CharField(max_length=50)
@@ -132,9 +137,14 @@ def stdev(data):
     std_dev = math.sqrt(var)
     return std_dev
 
+def cid(value):
+    global con_id
+    con_id = value
+    return
+
 def westgard(value):
     """ Perform a Westgard rule check before allowing result submission """
-    values = list(Test.objects.filter(control_id = control_id).order_by('id').values_list('result', flat=True))
+    values = list(Test.objects.filter(control_id = con_id).order_by('id').values_list('result', flat=True))
     onesd = stdev(values)
     total = 0
     for i in values:
