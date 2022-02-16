@@ -72,7 +72,7 @@ def result_menu(control_id):
         # get a unique list of analysers this control has been used on
         analyser_ids = set([id.analyser_id for id in list(Test.objects.filter(control_id=control_id))])
 
-        chart.ControlChart(d2=1.128, D3=0, D4=3.267, onesd=onesd, average=average, cov=cov, aload=str(control.assay_id))  # Random values
+        chart.ControlChart(d2=1.128, D3=0, D4=3.267, onesd=onesd, average=average, cov=cov, aload=str(control.assay_id)+" " +str(control.control_name))  # Random values
 
 def tests(request, control_id):
     """Displays all the results for the control separated by the analyser they were used on"""
@@ -86,7 +86,7 @@ def tests(request, control_id):
         tests_analyser[analyser] = Test.objects.filter(control_id=control_id, analyser_id=analyser)
 
     result_menu(control_id)
-    return render(request, 'Qsee/tests.html', {'control': control, 'tests_analyser': tests_analyser, 'analysers': analysers})
+    return render(request, 'Qsee/tests.html', {'control': control, 'tests_analyser': tests_analyser, 'analysers': analysers, 'aload': str(control.assay_id)+" " +str(control.control_name)})
 
 def settings(request):
     """Displays available assays, control and analysers. Each section has a form so that new items for
