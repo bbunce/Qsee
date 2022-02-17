@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="Screenshot upload">
-      <change afterPath="$PROJECT_DIR$/Qsee/templates/Qsee/chromedriver" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Qsee/templates/Qsee/test_frontend.py" afterDir="false" />
+    <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="Front-end testing via selenium implemented">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/qsee_debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/qsee_debug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 n_gene_pos.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 n_gene_pos.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Qsee/static/Test,  Test.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/static/Test,  Test.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645098161774</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Front-end testing via selenium implemented">
+      <created>1645099965150</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1645099965150</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -210,6 +215,7 @@
     <MESSAGE value="Visual changes" />
     <MESSAGE value="Zero division error for empty list fix." />
     <MESSAGE value="Screenshot upload" />
-    <option name="LAST_COMMIT_MESSAGE" value="Screenshot upload" />
+    <MESSAGE value="Front-end testing via selenium implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Front-end testing via selenium implemented" />
   </component>
 </project>
