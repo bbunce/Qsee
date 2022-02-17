@@ -3,7 +3,7 @@ Developed by George Doyle and Ben Bunce
 
 ### Project description
 
-QSee is a quality control visualisation tool that allows users to monitor internal quality control data through the generation of Levey-Jennings plots and the automatic application of Westgard rules.
+QSee is a quality control visualisation tool that allows users to monitor internal quality control data through the generation of Levey-Jennings plots (matplotlib) and the automatic application of Westgard rules.
 
 ![Screenshot of the dashboard](/screen1.png "Screenshot of the dashboard")
 
@@ -15,7 +15,7 @@ QSee is based on the Django framework and stores records in a pre-populated SQLi
 
 
 ### Installation
-- Clone the github ```<branch>``` repositry.
+- Clone the github ```<branch>``` repository.
 - Set up a new virtual environment of your choice.
 
 ### Dependencies
@@ -45,6 +45,15 @@ QSee is based on the Django framework and stores records in a pre-populated SQLi
 ##### Input control data
 - Form for the user to input the control testing data
 - Click save to save the record.
+##### Example usage - viewing and amending quality control records for SARS_CoV_2
+- Load the home page
+- Click 'Assays'
+- Click 'SARS_CoV_2'
+- Click 'Control: n_gene_pos | Lot: 237347/A | Active: True'
+- Quality control graphs and metrics will be displayed on screen.
+- Click 'Add control data'
+- Enter a valid control and date. Entries that breach Westgard rulings will not be validated and will flag an error to alert the user
+- The graph and quality metrics will automatically update
 
 ### Settings
 - New assays, control and analysers can be added to the system.
