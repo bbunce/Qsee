@@ -160,6 +160,9 @@ def westgard(value):
         total += i
     average = total / len(values)
 
+    if len(values) < 19:
+        return
+
     """ Begin validation checks """
     # 13S UCL/LCL VIOLATION
     if value > average+onesd*3:

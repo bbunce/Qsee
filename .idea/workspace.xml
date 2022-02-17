@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="Function to check date format is valid on result entry" />
+    <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="Visual changes">
+      <change afterPath="$PROJECT_DIR$/Qsee/static/CMV, 12 C1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Qsee/static/HLA-B27, 12 Negative.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Qsee/static/HLA-B27, 12 Positive.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 Negative.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 Negative.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 Negative.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 n_gene_pos.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 n_gene_pos.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -121,7 +130,21 @@
       <option name="project" value="LOCAL" />
       <updated>1645019517758</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Function to check date format is valid on result entry">
+      <created>1645019637781</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1645019637781</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Visual changes">
+      <created>1645028066186</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1645028066186</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -145,6 +168,7 @@
     <MESSAGE value="Passing control_assay.id variable to LJ plot function." />
     <MESSAGE value="More Westgard checks" />
     <MESSAGE value="Function to check date format is valid on result entry" />
-    <option name="LAST_COMMIT_MESSAGE" value="Function to check date format is valid on result entry" />
+    <MESSAGE value="Visual changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Visual changes" />
   </component>
 </project>

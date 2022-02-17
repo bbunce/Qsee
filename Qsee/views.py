@@ -6,6 +6,7 @@ from .forms import TestInputForm, AssayForm, ControlForm, AnalyserForm
 import numpy as np
 import pandas as pd
 import math
+import shutil
 
 
 # Create your views here.
@@ -58,6 +59,8 @@ def result_menu(control_id):
     if len(values) < 20:
         print("There are not enough QC entries to formulate an accurate Westgard plot. Currently: " + str(len(values)))
         print("You require at least 20 to begin.")
+        control = Control.objects.get(id=control_id)
+        shutil.copy("Qsee/static/20.svg", "Qsee/static/" + str(control.assay_id) + " " + str(control.control_name) + ".svg")
     else:
         # Takes all QC values in list to generate a global COV and SD figure
         onesd = stdev(values)
