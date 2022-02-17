@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="Visual changes">
-      <change beforePath="$PROJECT_DIR$/Qsee/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 Negative.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 Negative.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 n_gene_pos.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 n_gene_pos.svg" afterDir="false" />
+    <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="Zero division error for empty list fix.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645028066186</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Zero division error for empty list fix.">
+      <created>1645097344225</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1645097344225</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,6 +169,7 @@
     <MESSAGE value="More Westgard checks" />
     <MESSAGE value="Function to check date format is valid on result entry" />
     <MESSAGE value="Visual changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Visual changes" />
+    <MESSAGE value="Zero division error for empty list fix." />
+    <option name="LAST_COMMIT_MESSAGE" value="Zero division error for empty list fix." />
   </component>
 </project>
