@@ -59,5 +59,5 @@ QSee is based on the Django framework and stores records in a pre-populated SQLi
 - New assays, control and analysers can be added to the system.
 
 ### Contact Us
-- George Doyle <email>
+- [George Doyle](mailto:george.doyle@postgrad.manchester.ac.uk?subject=[QSee])
 - Ben Bunce <email>
