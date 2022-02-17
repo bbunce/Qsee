@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="Front-end testing via selenium implemented">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/qsee_debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/qsee_debug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 Negative.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 Negative.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 n_gene_pos.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 n_gene_pos.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/static/Test,  Test.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/static/Test,  Test.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Qsee/templates/Qsee/test_frontend.py" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/templates/Qsee/test_frontend.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645100313832</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Front-end testing via selenium implemented">
+      <created>1645100953631</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1645100953631</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
