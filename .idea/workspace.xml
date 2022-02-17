@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bef2ab02-703d-4e17-b1bd-966c942f27ec" name="Changes" comment="Visual changes">
-      <change afterPath="$PROJECT_DIR$/Qsee/static/CMV, 12 C1.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Qsee/static/HLA-B27, 12 Negative.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Qsee/static/HLA-B27, 12 Positive.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 Negative.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Qsee/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 Negative.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 Negative.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 n_gene_pos.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Qsee/static/SARS_CoV_2, 12 n_gene_pos.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

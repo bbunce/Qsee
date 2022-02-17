@@ -154,14 +154,15 @@ def datecheck(value):
 def westgard(value):
     """ Perform a Westgard rule check before allowing result submission """
     values = list(Test.objects.filter(control_id = con_id).order_by('id').values_list('result', flat=True))
+    # Scrap function if we don't have enough values anyway.
+    if len(values) < 19:
+        return
+
     onesd = stdev(values)
     total = 0
     for i in values:
         total += i
     average = total / len(values)
-
-    if len(values) < 19:
-        return
 
     """ Begin validation checks """
     # 13S UCL/LCL VIOLATION
