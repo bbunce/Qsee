@@ -3,6 +3,16 @@ Developed by George Doyle and Ben Bunce
 
 ### Project description
 
+QSee is a quality control visualisation tool that allows users to monitor internal quality control data through the generation of Levey-Jennings plots and the automatic application of Westgard rules.
+
+![Screenshot of the dashboard](/screen1.png "Screenshot of the dashboard")
+
+Qsee facilitates conformance with ISO 15189:2012 standards and provides a simple mechanism for analysing trends. The following Westgard rules are applied to control results:
+
+![Screenshot of the dashboard](/screen2.png "Westgard table list")
+
+QSee is based on the Django framework and stores records in a pre-populated SQLite relational database that links assays to controls, analysers, lot numbers and individual results.
+
 
 ### Installation
 - Clone the github ```<branch>``` repositry.
