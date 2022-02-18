@@ -58,6 +58,10 @@ QSee is based on the Django framework and stores records in a pre-populated SQLi
 ### Settings
 - New assays, control and analysers can be added to the system.
 
+### Unit testing
+- Django database unit tests ```python manage.py test```
+- Selenium front end unit test ```python Qsee/templates/Qsee/test_frontend.py```. Selenium requires a webdriver to run unit tests. See https://selenium-python.readthedocs.io/installation.html section 1.5 for more details. Current configuration setup for testing on MacOS platform.
+
 ### Contact Us
 - [George Doyle](mailto:george.doyle@postgrad.manchester.ac.uk?subject=[QSee])
-- Ben Bunce <email>
+- [Ben Bunce](mailto:benjamin.bunce@postgrad.manchester.ac.uk?subject=[QSee])
