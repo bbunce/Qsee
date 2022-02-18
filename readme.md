@@ -15,7 +15,7 @@ QSee is based on the Django framework and stores records in a pre-populated SQLi
 
 
 ### Installation
-- Clone the github ```<branch>``` repository.
+- Clone the github ```main_GeorgeDoyle_BenBunce``` repository.
 - Set up a new virtual environment of your choice.
 
 ### Dependencies
